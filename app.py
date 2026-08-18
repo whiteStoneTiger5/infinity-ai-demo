@@ -234,6 +234,21 @@ elif st.session_state.mode == "trainer":
             f"目的：{st.session_state.user_goal}"
         )
 
+        st.caption("体験期間：Day 1 / 3")
+
+        with st.expander(
+            "👤 トレーナー本人に相談する"
+        ):
+            st.write(
+                "デモ版のため、実際の送信は行われません。"
+            )
+
+            st.write(
+                "本番版では、必要に応じて"
+                "INFINITYのトレーナー本人へ"
+                "チャットを引き継ぐことを想定しています。"
+            )
+
         if st.button("← 最初の画面に戻る"):
             reset_demo()
             st.rerun()
