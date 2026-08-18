@@ -23,6 +23,33 @@ st.set_page_config(
     page_icon="🏋️",
 )
 
+st.markdown(
+    """
+    <style>
+    div.stButton > button {
+        width: 100%;
+        border: 1px solid #d0d0d0;
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+        transition: all 0.15s ease-in-out;
+    }
+
+    div.stButton > button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.16);
+    }
+
+    div.stButton > button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.10);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 st.title("INFINITY AI Demo")
 st.caption("Personal Training Gym × AI")
 
