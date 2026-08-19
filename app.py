@@ -19,7 +19,7 @@ client = OpenAI(
 
 
 st.set_page_config(
-    page_title="INFINITY AI Demo",
+    page_title="PERSONAL AI Demo",
     page_icon="🏋️",
 )
 
@@ -50,7 +50,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.title("INFINITY AI Demo")
+st.title("PERSONAL AI Demo")
 st.caption("Personal Training Gym × AI")
 
 
@@ -123,20 +123,23 @@ def generate_response(
 # -------------------------
 
 if st.session_state.mode is None:
-    st.subheader("体験するサービスを選んでください")
+    st.subheader("体験するAIチャットを選んでください")
 
     st.write(
-        "INFINITYへの質問・相談、または"
-        "AIトレーナーによる食事サポートを体験できます。"
+        "当ジムに関する質問/相談の専用チャット"
     )
 
     if st.button(
-        "💬 INFINITYについて相談",
+        "💬 当ジムについて相談",
         use_container_width=True,
     ):
         st.session_state.mode = "concierge"
         st.session_state.messages = []
         st.rerun()
+
+    st.write(
+            "AIトレーナーによる食事サポートを無料体験できます。"
+        )
 
     if st.button(
         "🥗 3日間AI食事サポート",
@@ -148,17 +151,17 @@ if st.session_state.mode is None:
 
 
 # -------------------------
-# INFINITY相談モード
+# 当ジムへの質問/相談モード
 # -------------------------
 
 elif st.session_state.mode == "concierge":
-    st.subheader("💬 INFINITYについて相談")
+    st.subheader("💬 当ジムに関する質問/相談について専属AIが回答")
 
     st.caption(
-        "ジムについて気になることを気軽に質問してください。"
+        "当ジムについて知りたいことや、利用にあたって不安なことをお気軽にお聞きください。"
     )
 
-    if st.button("← 最初の画面に戻る"):
+    if st.button("← TOP画面に戻る"):
         reset_demo()
         st.rerun()
 
@@ -182,7 +185,7 @@ elif st.session_state.mode == "concierge":
             st.write(user_input)
 
         with st.spinner(
-            "INFINITY AIが回答を考えています..."
+            "回答を生成中です..."
         ):
             assistant_response = generate_response(
                 GYM_CONCIERGE_SYSTEM_PROMPT
@@ -209,26 +212,26 @@ elif st.session_state.mode == "trainer":
         st.subheader("🥗 3日間AI食事サポート")
 
         st.write(
-            "あなたに合ったサポートをするために、"
-            "まずは簡単に教えてください。"
+            "お客様にぴったりのサポートをさせていただくために、"
+            "お名前と食事サポートを体験する目的を教えてください。"
         )
 
         user_name = st.text_input(
-            "お名前"
+            "お名前(名字だけでOK)"
         )
 
         user_goal = st.selectbox(
             "今回の目的",
             [
-                "ダイエット",
-                "筋肉をつけたい",
-                "運動習慣をつけたい",
-                "姿勢・身体を改善したい",
+                "痩せたい/体を引き締めたい",
+                "筋肉をつけたい/ボディメイク大会に出たい",
+                "生活習慣を改善したい/運動習慣をつけたい",
+                "姿勢・身体に関する悩みを改善したい",
             ],
         )
 
         if st.button(
-            "AIトレーナー体験を始める",
+            "食事サポート体験を始めましょう",
             use_container_width=True,
         ):
             if user_name.strip():
@@ -251,32 +254,32 @@ elif st.session_state.mode == "trainer":
             st.rerun()
 
     else:
-        st.subheader("🥗 3日間AI食事サポート")
+        st.subheader("🥗 専属AIトレーナーによる食事サポート中(3日間)")
 
         st.success(
-            f"{st.session_state.user_name}さんの体験中"
+            f"{st.session_state.user_name}さん専用のチャット画面"
         )
 
         st.caption(
             f"目的：{st.session_state.user_goal}"
         )
 
-        st.caption("体験期間：Day 1 / 3")
+        st.caption("体験期間：1日目")
 
         with st.expander(
-            "👤 トレーナー本人に相談する"
+            "👤 トレーナー本人(人間)へ相談する"
         ):
             st.write(
                 "デモ版のため、実際の送信は行われません。"
             )
 
             st.write(
-                "本番版では、必要に応じて"
-                "INFINITYのトレーナー本人へ"
+                "本番アプリ版では、必要に応じて"
+                "トレーナー本人(人間)へ"
                 "チャットを引き継ぐことを想定しています。"
             )
 
-        if st.button("← 最初の画面に戻る"):
+        if st.button("← TOP画面に戻る"):
             reset_demo()
             st.rerun()
 
