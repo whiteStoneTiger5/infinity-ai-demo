@@ -249,7 +249,7 @@ elif st.session_state.mode == "trainer":
                     "お名前を入力してください。"
                 )
 
-        if st.button("← 最初の画面に戻る"):
+        if st.button("← TOP画面に戻る"):
             reset_demo()
             st.rerun()
 
