@@ -92,6 +92,7 @@ def generate_response(
     system_message = (
         system_prompt
         + "\n\n"
+        + "# 以下がINFINITYのKnowledgeです\n\n"
         + GYM_KNOWLEDGE
     )
 
